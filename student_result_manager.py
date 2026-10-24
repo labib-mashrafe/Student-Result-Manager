@@ -71,6 +71,21 @@ def view_student():
     else:
         for subject, grade in student["grades"].items():
             print(f"  {subject}: {grade}")
+        average = sum(student["grades"].values()) / len(student["grades"])
+        print(f"  Average: {average:.1f}")
+        if average >= 80:
+            letter = "A+"
+        elif average >= 70:
+            letter = "A"
+        elif average >= 60:
+            letter = "B"
+        elif average >= 50:
+            letter = "C"    
+        elif average >= 40:
+            letter = "D"    
+        else:
+            letter = "F"
+        print(f"  Grade: {letter}")    
 
 def view_all_students():
     if not students:
