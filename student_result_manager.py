@@ -1,6 +1,20 @@
 # Student Result Manager CLI
+import json
 
-students = {}
+DATA_FILE = "students.json"
+
+def load_data():
+    try:
+        with open(DATA_FILE, "r") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def save_data():
+    with open(DATA_FILE, "w") as file:
+        json.dump(students, file, indent=4)
+
+students = load_data()
 
 def add_student():
     student_id = input("Enter student ID: ").strip()
@@ -17,15 +31,16 @@ def add_student():
             "grades": {}
         }
         print(f"Student {name} added successfully!")
+        save_data()
 
 def add_grade():
-    student_id = input("Enter student ID: ")
+    student_id = input("Enter student ID: ").strip()
     
     if student_id not in students:
         print("Student not found!")
         return
     
-    subject = input("Enter subject: ")
+    subject = input("Enter subject: ").strip()
     while True:
         grade_input = input("Enter grade (0-100): ")
         try:
@@ -38,9 +53,10 @@ def add_grade():
             print("Please enter a number.")    
     students[student_id]["grades"][subject] = grade
     print(f"Grade added for {students[student_id]['name']}")
+    save_data()
 
 def view_student():
-    student_id = input("Enter student ID: ")
+    student_id = input("Enter student ID: ").strip()
     
     if student_id not in students:
         print("Student not found!")
