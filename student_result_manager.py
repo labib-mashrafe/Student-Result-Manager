@@ -3,8 +3,11 @@
 students = {}
 
 def add_student():
-    student_id = input("Enter student ID: ")
-    name = input("Enter student name: ")
+    student_id = input("Enter student ID: ").strip()
+    name = input("Enter student name: ").strip()
+    if not student_id or not name:
+        print("ID and name cannot be empty!")
+        return
     
     if student_id in students:
         print("Student ID already exists!")
