@@ -1,42 +1,39 @@
-# Student Result Manager CLI
+# Student Result Manager
 
----
-
-## Overview
-This is a **Python command-line student result manager**. Users can add students, record subject grades, view individual student results, and list all registered students. The project demonstrates basic Python programming concepts and interactive CLI design.
-
----
+A command-line tool in Python for managing student records: add students, record subject grades, and view each student's average and letter grade. Data is saved to a JSON file, so records persist between sessions.
 
 ## Features
-- Add new students with unique student IDs  
-- Record subject grades for existing students  
-- View individual student records with grades  
-- View all registered students  
-- Input validation for existing student IDs  
-- Interactive menu loop until exit  
 
----
+- Add students with unique IDs
+- Record grades per subject (0–100), with input validation
+- Rejects empty or duplicate student IDs and empty names
+- Shows each student's grades, average, and letter grade
+- Saves all data to `students.json` automatically
 
 ## How to Run
-1. Open `student_result_manager.py` in a Python environment that supports input and print (e.g., Pyto, Carnets, VS Code, or any desktop Python IDE).  
-2. Run the script:
 
-```bash
+Requires Python 3.
+
+```
 python student_result_manager.py
 ```
-## Example Interaction                
-```
---- Student Result Manager ---
-1. Add student
-2. Add grade
-3. View student
-4. View all students
-5. Exit
-Enter choice: 1
-Enter student ID: 123
-Enter student name: Labib
-Student Labib added successfully!
 
+Data is stored in `students.json` in the same folder. The file is created automatically on first use.
+
+## Letter Grade Scale
+
+| Average | Grade |
+|---|---|
+| 80 and above | A+ |
+| 70 to below 80 | A |
+| 60 to below 70 | B |
+| 50 to below 60 | C |
+| 40 to below 50 | D |
+| Below 40 | F |
+
+## Example
+
+```
 --- Student Result Manager ---
 1. Add student
 2. Add grade
@@ -44,29 +41,32 @@ Student Labib added successfully!
 4. View all students
 5. Exit
 Enter choice: 2
-Enter student ID: 123
-Enter subject: Math
-Enter grade: 95
+Enter student ID: 1
+Enter subject: Physics
+Enter grade (0-100): abc
+Please enter a number.
+Enter grade (0-100): 150
+Grade must be between 0 and 100.
+Enter grade (0-100): 70
 Grade added for Labib
 
---- Student Result Manager ---
-1. Add student
-2. Add grade
-3. View student
-4. View all students
-5. Exit
 Enter choice: 3
-Enter student ID: 123
+Enter student ID: 1
 
 Name: Labib
 Grades:
-  Math: 95
+  Math: 85
+  Physics: 70
+  Average: 77.5
+  Grade: A
 ```
-## Skills Demonstrated                  
-   - Python fundamentals: functions,  loops, dictionaries
-   - CLI design and user input handling
-   - Dynamic data management and record keeping
-   - Menu-driven interactive programs
 
-## License                            
-     This project is licensed under the MIT License 
+## What I Learned
+
+- Validating user input with `try/except`
+- Reading and writing data with JSON files
+- Structuring a program with functions
+
+## License
+
+MIT
