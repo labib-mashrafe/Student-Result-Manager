@@ -23,8 +23,16 @@ def add_grade():
         return
     
     subject = input("Enter subject: ")
-    grade = input("Enter grade: ")
-    
+    while True:
+        grade_input = input("Enter grade (0-100): ")
+        try:
+            grade = int(grade_input)
+            if 0 <= grade <= 100:
+                break
+            else:
+                print("Grade must be between 0 and 100.")
+        except ValueError:
+            print("Please enter a number.")    
     students[student_id]["grades"][subject] = grade
     print(f"Grade added for {students[student_id]['name']}")
 
